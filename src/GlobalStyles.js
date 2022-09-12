@@ -25,6 +25,10 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${BoldItalicVariable});
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: "JetBrains Mono Bold";
     background-color: ${({ theme }) => theme.colors.veryDarkGrey}
