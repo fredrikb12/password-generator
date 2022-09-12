@@ -1,7 +1,9 @@
 import { useState } from "react";
 import copy from "../assets/images/icon-copy.svg";
+import arrow from "../assets/images/icon-arrow-right.svg";
 import CheckboxItem from "./CheckboxItem/CheckboxItem";
 import Icon from "./Icon/Icon";
+import GenerateButton from "./GenerateButton/GenerateButton";
 
 function PasswordGenerator() {
   const [useUppercase, setUseUppercase] = useState(false);
@@ -64,6 +66,7 @@ function PasswordGenerator() {
         <p>STRENGTH</p>
         <p>MEDIUM</p>
       </div>
+      <GenerateButton src={arrow} alt="arrow" type="arrow" />
     </main>
   );
 }
