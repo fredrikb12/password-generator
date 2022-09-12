@@ -27,5 +27,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "JetBrains Mono Bold";
+    background-color: ${({ theme }) => theme.colors.veryDarkGrey}
   }
 `;

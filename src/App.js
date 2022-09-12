@@ -1,4 +1,5 @@
 import { ThemeProvider } from "styled-components";
+import PasswordGenerator from "./components/PasswordGenerator";
 import { GlobalStyle } from "./GlobalStyles";
 
 function App() {
@@ -30,12 +31,42 @@ function App() {
         lineHeight: "23px",
       },
     },
+    icons: {
+      copy: {
+        filters: {
+          hover:
+            "brightness(0) saturate(100%) invert(100%) sepia(84%) saturate(110%) hue-rotate(192deg) brightness(112%) contrast(100%)",
+        },
+        width: {
+          mobile: "17.5px",
+          regular: "21px",
+        },
+        height: {
+          mobile: "20px",
+          regular: "24px",
+        },
+      },
+      arrow: {
+        filters: {
+          hover:
+            "brightness(0) saturate(100%) invert(84%) sepia(42%) saturate(354%) hue-rotate(67deg) brightness(101%) contrast(104%);",
+        },
+        width: {
+          mobile: "11px",
+          regular: "11px",
+        },
+        height: {
+          mobile: "12px",
+          regular: "12px",
+        },
+      },
+    },
   };
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <div>App</div>
+      <PasswordGenerator />
     </ThemeProvider>
   );
 }
