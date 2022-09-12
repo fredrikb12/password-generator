@@ -1,7 +1,14 @@
+import { useState } from "react";
 import copy from "../assets/images/icon-copy.svg";
+import CheckboxItem from "./CheckboxItem/CheckboxItem";
 import Icon from "./Icon/Icon";
 
 function PasswordGenerator() {
+  const [useUppercase, setUseUppercase] = useState(false);
+  const [useLowercase, setUseLowercase] = useState(false);
+  const [useNumbers, setUseNumbers] = useState(false);
+  const [useSymbols, setUseSymbols] = useState(false);
+
   return (
     <main
       style={{
@@ -31,10 +38,26 @@ function PasswordGenerator() {
       </div>
 
       <div>
-        <p>Include Uppercase Letters</p>
-        <p>Include Lowercase Letters</p>
-        <p>Include Numbers</p>
-        <p>Include Symbols</p>
+        <CheckboxItem
+          checked={useUppercase}
+          toggleChecked={() => setUseUppercase((prev) => !prev)}
+          text={"Include Uppercase Letters"}
+        />
+        <CheckboxItem
+          checked={useLowercase}
+          toggleChecked={() => setUseLowercase((prev) => !prev)}
+          text={"Include Lowercase Letters"}
+        />
+        <CheckboxItem
+          checked={useNumbers}
+          toggleChecked={() => setUseNumbers((prev) => !prev)}
+          text={"Include Numbers"}
+        />
+        <CheckboxItem
+          checked={useSymbols}
+          toggleChecked={() => setUseSymbols((prev) => !prev)}
+          text={"Include Symbols"}
+        />
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
