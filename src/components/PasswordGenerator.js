@@ -6,6 +6,7 @@ import Icon from "./Icon/Icon";
 import GenerateButton from "./GenerateButton/GenerateButton";
 import StrengthMeter from "./StrengthMeter/StrengthMeter";
 import CharacterLength from "./CharacterLength/CharacterLength";
+import PasswordDisplay from "./PasswordDisplay/PasswordDisplay";
 
 function PasswordGenerator() {
   const [useUppercase, setUseUppercase] = useState(false);
@@ -26,21 +27,7 @@ function PasswordGenerator() {
     >
       <h1>Password Generator</h1>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          backgroundColor: "#24232c",
-        }}
-      >
-        <p>generated password</p>
-        <button
-          style={{ border: "none", backgroundColor: "transparent" }}
-          onClick={() => navigator.clipboard.writeText("This text was copied")}
-        >
-          <Icon src={copy} alt="Copy" type={"copy"} />
-        </button>
-      </div>
+      <PasswordDisplay password={password} />
 
       <div
         style={{
