@@ -6,6 +6,7 @@ import StrengthMeter from "./StrengthMeter/StrengthMeter";
 import CharacterLength from "./CharacterLength/CharacterLength";
 import PasswordDisplay from "./PasswordDisplay/PasswordDisplay";
 import { generatePassword } from "../utils/generatePassword";
+import Heading from "./Heading/Heading";
 
 function PasswordGenerator() {
   const [useUppercase, setUseUppercase] = useState(false);
@@ -26,23 +27,41 @@ function PasswordGenerator() {
     setPassword(newPassword);
   }
 
+  function getStrength() {
+    if (
+      [useUppercase, useLowercase, useNumbers, useSymbols].every(
+        (item) => item === false
+      )
+    )
+      return 0;
+    if (length < 7) return 1;
+    if (length < 10) return 2;
+    let score = 0;
+    [useUppercase, useLowercase, useNumbers, useSymbols].forEach((item) => {
+      if (item === true) score += 5;
+    });
+    score += length / 2;
+    return Math.floor(score / 7);
+  }
+
   return (
     <main
       style={{
-        maxWidth: "600px",
-        border: "1px solid black",
-        padding: "25px 32px 32px",
-        backgroundColor: "#24232c",
+        maxWidth: "540px",
+        width: "90vw",
         margin: "auto",
       }}
     >
-      <h1>Password Generator</h1>
+      <Heading />
 
       <PasswordDisplay password={password} />
 
       <div
         style={{
           backgroundColor: "#24232c",
+          padding: "32px 34px",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <CharacterLength
@@ -50,7 +69,14 @@ function PasswordGenerator() {
           length={length}
           setLength={setLength}
         />
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "19px",
+            marginBottom: "32px",
+          }}
+        >
           <CheckboxItem
             checked={useUppercase}
             toggleChecked={() => setUseUppercase((prev) => !prev)}
@@ -72,7 +98,7 @@ function PasswordGenerator() {
             text={"Include Symbols"}
           />
         </div>
-        <StrengthMeter password={password} />
+        <StrengthMeter password={password} strength={getStrength()} />
         <GenerateButton
           handleClick={handleGenerateNewPassword}
           src={arrow}

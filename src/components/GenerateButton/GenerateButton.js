@@ -4,7 +4,9 @@ import Icon from "../Icon/Icon";
 
 const StyledButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
+  height: 65px;
   gap: 24px;
   font-size: ${({ theme }) => theme.fonts.body.fontSize};
   line-height: ${({ theme }) => theme.fonts.body.lineHeight};

@@ -1,12 +1,23 @@
+import { useEffect, useState } from "react";
 import { StyledStrengthMeter } from "./StrengthMeter.styled";
 
-function StrengthMeter({ password, strengthArray = [] }) {
-  function getColor(array) {
-    let items = 0;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] !== null) items++;
+function StrengthMeter({ password, strength }) {
+  const [strengthArray, setStrengthArray] = useState([]);
+
+  useEffect(() => {
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+      if (i < strength) {
+        array.push(true);
+      } else {
+        array.push(false);
+      }
     }
-    switch (items) {
+    setStrengthArray(array);
+  }, [strength]);
+
+  function getColor(strength) {
+    switch (strength) {
       case 1: {
         return "red";
       }
@@ -20,17 +31,42 @@ function StrengthMeter({ password, strengthArray = [] }) {
         return "neonGreen";
       }
       default:
-        return undefined;
+        return "empty";
+    }
+  }
+
+  function getText() {
+    switch (strength) {
+      case 1:
+        return "TOO WEAK!";
+      case 2:
+        return "WEAK";
+      case 3:
+        return "MEDIUM";
+      case 4:
+        return "STRONG";
+      default:
+        return "";
     }
   }
   return (
     <StyledStrengthMeter>
-      <p>STRENGTH</p>
-      <div>
-        <p>MEDIUM</p>
-        {strengthArray.map((item, index, array) => {
-          return <div className={getColor(array)}></div>;
-        })}
+      <p className="body-font">STRENGTH</p>
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        <p className="medium-font">{getText()}</p>
+        <div className="container">
+          {strengthArray.map((item, index) => {
+            if (item === false)
+              return <div key={index} className={"strength-item empty"}></div>;
+            else
+              return (
+                <div
+                  key={index}
+                  className={"strength-item " + getColor(strength)}
+                ></div>
+              );
+          })}
+        </div>
       </div>
     </StyledStrengthMeter>
   );

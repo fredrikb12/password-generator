@@ -5,6 +5,8 @@ export const StyledCharacterLength = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.dimWhite};
 
+  margin-bottom: 42px;
+
   .green {
     color: ${({ theme }) => theme.colors.neonGreen};
   }
@@ -15,6 +17,7 @@ export const StyledCharacterLength = styled.div`
   }
 
   input[type="range"] {
+    margin-top: 35px;
     appearance: none;
     background-color: ${({ theme }) => theme.colors.veryDarkGrey};
     height: 10px;
