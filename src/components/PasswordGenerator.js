@@ -1,12 +1,11 @@
 import { useState } from "react";
-import copy from "../assets/images/icon-copy.svg";
 import arrow from "../assets/images/icon-arrow-right.svg";
 import CheckboxItem from "./CheckboxItem/CheckboxItem";
-import Icon from "./Icon/Icon";
 import GenerateButton from "./GenerateButton/GenerateButton";
 import StrengthMeter from "./StrengthMeter/StrengthMeter";
 import CharacterLength from "./CharacterLength/CharacterLength";
 import PasswordDisplay from "./PasswordDisplay/PasswordDisplay";
+import { generatePassword } from "../utils/generatePassword";
 
 function PasswordGenerator() {
   const [useUppercase, setUseUppercase] = useState(false);
@@ -16,6 +15,17 @@ function PasswordGenerator() {
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(0);
 
+  function handleGenerateNewPassword() {
+    const newPassword = generatePassword(
+      useLowercase,
+      useUppercase,
+      useNumbers,
+      useSymbols,
+      length
+    );
+    setPassword(newPassword);
+  }
+
   return (
     <main
       style={{
@@ -23,6 +33,7 @@ function PasswordGenerator() {
         border: "1px solid black",
         padding: "25px 32px 32px",
         backgroundColor: "#24232c",
+        margin: "auto",
       }}
     >
       <h1>Password Generator</h1>
@@ -61,8 +72,13 @@ function PasswordGenerator() {
             text={"Include Symbols"}
           />
         </div>
-        <StrengthMeter />
-        <GenerateButton src={arrow} alt="arrow" type="arrow" />
+        <StrengthMeter password={password} />
+        <GenerateButton
+          handleClick={handleGenerateNewPassword}
+          src={arrow}
+          alt="arrow"
+          type="arrow"
+        />
       </div>
     </main>
   );

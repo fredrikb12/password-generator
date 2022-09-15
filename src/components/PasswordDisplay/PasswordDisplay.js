@@ -5,7 +5,12 @@ import { StyledPasswordDisplay } from "./PasswordDisplay.styled";
 function PasswordDisplay({ password, isCopied }) {
   return (
     <StyledPasswordDisplay>
-      <input type="text" value={password} placeholder={"P4$5WOrD!"} />
+      <input
+        type="text"
+        value={password}
+        readOnly={true}
+        placeholder={"P4$5WOrD!"}
+      />
       <div>
         {isCopied ? <p>COPIED</p> : null}
         <button

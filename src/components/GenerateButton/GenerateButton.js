@@ -30,6 +30,7 @@ function GenerateButton({ handleClick, ...props }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <StyledButton
+      onClick={handleClick}
       onMouseLeave={() => setIsHovered(false)}
       onMouseEnter={() => setIsHovered(true)}
     >
